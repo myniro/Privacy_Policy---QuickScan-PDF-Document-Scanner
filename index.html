@@ -139,7 +139,10 @@
         .table-wrap {
             width: 100%;
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
             margin: 18px 0;
+            border-radius: 10px;
+            border: 1px solid var(--border);
         }
 
         table {
@@ -147,11 +150,14 @@
             border-collapse: collapse;
             font-size: 14px;
             text-align: left;
+            background: #FFFFFF;
         }
 
         th, td {
             padding: 12px 14px;
             border: 1px solid var(--border);
+            vertical-align: top;
+            word-break: break-word;
         }
 
         th {
@@ -162,6 +168,77 @@
 
         td {
             color: var(--text-muted);
+        }
+
+        /* Mobile Responsive Permission Cards */
+        .permission-cards {
+            display: none;
+            flex-direction: column;
+            gap: 14px;
+            margin: 18px 0;
+        }
+
+        .permission-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--primary);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        .permission-card-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .permission-code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 13px;
+            font-weight: 700;
+            color: #1E1B4B;
+            background: var(--primary-light);
+            padding: 4px 8px;
+            border-radius: 6px;
+            word-break: break-all;
+        }
+
+        .permission-type-tag {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 3px 8px;
+            border-radius: 9999px;
+            white-space: nowrap;
+        }
+
+        .tag-runtime {
+            background-color: #FEF3C7;
+            color: #92400E;
+            border: 1px solid #FDE68A;
+        }
+
+        .tag-install {
+            background-color: #E0E7FF;
+            color: #3730A3;
+            border: 1px solid #C7D2FE;
+        }
+
+        .permission-purpose {
+            font-size: 13.5px;
+            line-height: 1.55;
+            color: var(--text-main);
+        }
+
+        .permission-purpose strong {
+            color: #374151;
         }
 
         .contact-card {
@@ -192,18 +269,33 @@
             font-size: 13px;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 680px) {
+            body {
+                padding: 12px 8px;
+            }
             .header {
-                padding: 28px 20px;
+                padding: 24px 16px;
             }
             .header h1 {
-                font-size: 22px;
+                font-size: 21px;
+            }
+            .header p {
+                font-size: 14px;
             }
             .content {
-                padding: 24px 18px;
+                padding: 20px 14px;
             }
             h2 {
-                font-size: 18px;
+                font-size: 17px;
+                margin-top: 26px;
+            }
+
+            /* On mobile Android view, hide horizontal table and show native cards */
+            .table-wrap {
+                display: none;
+            }
+            .permission-cards {
+                display: flex;
             }
         }
     </style>
@@ -294,29 +386,62 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Permission</th>
-                        <th>Type</th>
-                        <th>Exact Purpose</th>
+                        <th style="width: 32%;">Permission</th>
+                        <th style="width: 23%;">Type</th>
+                        <th style="width: 45%;">Exact Purpose</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>android.permission.CAMERA</strong></td>
-                        <td>Runtime Permission</td>
+                        <td><strong style="font-family: monospace; color: #1E1B4B;">android.permission.CAMERA</strong></td>
+                        <td><span class="permission-type-tag tag-runtime">Runtime</span></td>
                         <td>Used strictly to allow you to photograph physical documents within the scan screen. The camera stream is analyzed on-device only; photos are never sent to external servers.</td>
                     </tr>
                     <tr>
-                        <td><strong>android.permission.INTERNET</strong></td>
-                        <td>Install-Time Permission</td>
+                        <td><strong style="font-family: monospace; color: #1E1B4B;">android.permission.INTERNET</strong></td>
+                        <td><span class="permission-type-tag tag-install">Install-Time</span></td>
                         <td>Required for user authentication (Google Sign-In / Firebase Auth), connecting to Google Play Billing servers for VIP purchases, and serving advertisements via Google AdMob for free users.</td>
                     </tr>
                     <tr>
-                        <td><strong>com.android.vending.BILLING</strong></td>
-                        <td>Install-Time Permission</td>
+                        <td><strong style="font-family: monospace; color: #1E1B4B;">com.android.vending.BILLING</strong></td>
+                        <td><span class="permission-type-tag tag-install">Install-Time</span></td>
                         <td>Used to initiate official Google Play in-app purchases (Lifetime VIP plan) and recurring subscriptions (Monthly and Yearly VIP plans).</td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <!-- Android Mobile Friendly Permission Cards (Shown automatically on mobile/narrow screens) -->
+        <div class="permission-cards">
+            <div class="permission-card">
+                <div class="permission-card-header">
+                    <span class="permission-code">android.permission.CAMERA</span>
+                    <span class="permission-type-tag tag-runtime">Runtime Permission</span>
+                </div>
+                <div class="permission-purpose">
+                    <strong>Exact Purpose:</strong> Used strictly to allow you to photograph physical documents within the scan screen. The camera stream is analyzed 100% on-device only; photos are never sent to external servers.
+                </div>
+            </div>
+
+            <div class="permission-card">
+                <div class="permission-card-header">
+                    <span class="permission-code">android.permission.INTERNET</span>
+                    <span class="permission-type-tag tag-install">Install-Time</span>
+                </div>
+                <div class="permission-purpose">
+                    <strong>Exact Purpose:</strong> Required for user authentication (Google Sign-In / Firebase Auth), connecting to Google Play Billing servers for VIP purchases, and serving advertisements via Google AdMob for free users.
+                </div>
+            </div>
+
+            <div class="permission-card">
+                <div class="permission-card-header">
+                    <span class="permission-code">com.android.vending.BILLING</span>
+                    <span class="permission-type-tag tag-install">Install-Time</span>
+                </div>
+                <div class="permission-purpose">
+                    <strong>Exact Purpose:</strong> Used to initiate official Google Play in-app purchases (Lifetime VIP plan) and recurring subscriptions (Monthly and Yearly VIP plans).
+                </div>
+            </div>
         </div>
 
         <h2>4. Local Storage & Zero External Transmission</h2>
@@ -382,6 +507,10 @@
             <p style="margin-bottom: 6px; font-weight: 700; color: #111827;">QuickScan Support & Privacy Team</p>
             <p style="margin-bottom: 4px;">Official Support Email:</p>
             <a href="mailto:myniro.support@gmail.com">myniro.support@gmail.com</a>
+            <p style="margin-top: 10px; margin-bottom: 4px; font-size: 13px; color: var(--text-muted);">Official Privacy Policy Link for Google Play Console:</p>
+            <a href="https://myniro.github.io/Privacy_Policy---QuickScan-PDF-Document-Scanner/" target="_blank" rel="noopener noreferrer" style="font-size: 14px; word-break: break-all;">
+                https://myniro.github.io/Privacy_Policy---QuickScan-PDF-Document-Scanner/
+            </a>
         </div>
     </div>
 
