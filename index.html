@@ -215,8 +215,8 @@
         <h1>QuickScan – PDF & Document Scanner</h1>
         <p>Official Privacy Policy for Google Play Store</p>
         <div class="badge-bar">
-            <span class="badge">100% Offline-First</span>
-            <span class="badge">Zero Cloud Uploads</span>
+            <span class="badge">100% Offline-First Documents</span>
+            <span class="badge">Secure Authentication</span>
             <span class="badge">Google Play Compliant</span>
         </div>
     </div>
@@ -227,12 +227,12 @@
 
         <p>
             Welcome to <strong>QuickScan – PDF & Document Scanner</strong> ("we", "our", or "the App"). 
-            We respect your privacy and are committed to protecting it. This Privacy Policy strictly explains what permissions our app uses, why they are needed, and how your data is handled.
+            We respect your privacy and are committed to protecting it. This Privacy Policy strictly explains what data our app collects, how user authentication and third-party login services work, what permissions our app uses, and how your data is handled.
         </p>
 
         <div class="highlight-box">
             <p>
-                🔒 <strong>Zero Server Upload Policy:</strong> All document scanning, image edge cropping, filters, signatures, stamps, and PDF exports are processed <strong>100% locally on your device</strong>. We do NOT operate external document servers, and we never collect, upload, or share your scanned documents or personal files.
+                🔒 <strong>Zero Server Upload for Documents:</strong> All document scanning, corner detection, perspective cropping, color filters, digital signatures, stamps, and PDF exports are processed <strong>100% locally on your device</strong>. We do NOT operate document cloud storage, and we never collect, upload, or share your scanned documents or personal files.
             </p>
         </div>
 
@@ -247,9 +247,45 @@
             <li>Adding custom drawn digital signatures and predefined status stamps directly to pages.</li>
             <li>Protecting scanned documents on-device with an optional 4-digit Security PIN.</li>
             <li>Exporting multi-page scans into standardized PDF files or individual JPEG images.</li>
+            <li>Optional user account creation and sign-in to manage your profile and synchronize VIP subscription entitlements.</li>
         </ul>
 
-        <h2>2. Android Permissions We Use & Why</h2>
+        <h2>2. User Account Registration & Third-Party Authentication</h2>
+        <p>
+            QuickScan provides an optional user account feature. You can use the document scanning and PDF creation features as a Guest without creating an account. However, if you choose to sign up or log in, we utilize secure authentication mechanisms as described below:
+        </p>
+        <ul>
+            <li>
+                <strong>Third-Party Authentication (Google Sign-In / Google Identity Services & Firebase Authentication):</strong>
+                <br>
+                When you choose <em>"Sign in with Google"</em> or <em>"Sign up with Google"</em>, authentication is handled securely by <strong>Google Identity Services</strong> and <strong>Firebase Authentication (Google LLC)</strong>.
+                <br>
+                <strong>Information Received from Third-Party Login:</strong>
+                <ul>
+                    <li><strong>Google User ID (UID):</strong> A unique pseudonymous identifier used to recognize your account session.</li>
+                    <li><strong>Email Address:</strong> Used strictly to identify your account and verify your VIP status.</li>
+                    <li><strong>Display Name & Profile Picture URL:</strong> Used solely to personalize your profile header within the app.</li>
+                </ul>
+                <em>Note: We never access, request, or receive your Google account password or contacts.</em>
+            </li>
+            <li>
+                <strong>Email & Password Login:</strong>
+                <br>
+                If you register using an email address and password, your password is never stored in plain text. Passwords are secured locally using unique cryptographic per-user salts and SHA-256 hashing, and can also be authenticated through Firebase Authentication.
+            </li>
+            <li>
+                <strong>Purpose of Login Details:</strong>
+                <br>
+                Your login credentials and profile details are used strictly for:
+                <ul>
+                    <li>Authenticating your identity and maintaining your active sign-in session.</li>
+                    <li>Synchronizing and restoring your QuickScan VIP entitlement (e.g., across device re-installs).</li>
+                    <li>Allowing you to update your profile details or securely delete your account at any time.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>3. Android Permissions We Use & Why</h2>
         <p>
             Our app requests only the minimum permissions necessary to perform its core functions:
         </p>
@@ -272,7 +308,7 @@
                     <tr>
                         <td><strong>android.permission.INTERNET</strong></td>
                         <td>Install-Time Permission</td>
-                        <td>Required to connect to Google Play Billing servers for VIP purchases/subscriptions, and to serve advertisements via Google AdMob for free users.</td>
+                        <td>Required for user authentication (Google Sign-In / Firebase Auth), connecting to Google Play Billing servers for VIP purchases, and serving advertisements via Google AdMob for free users.</td>
                     </tr>
                     <tr>
                         <td><strong>com.android.vending.BILLING</strong></td>
@@ -283,25 +319,30 @@
             </table>
         </div>
 
-        <h2>3. Local Storage & Zero External Transmission</h2>
+        <h2>4. Local Storage & Zero External Transmission</h2>
         <p>
             All document data remains on your physical Android device:
         </p>
         <ul>
             <li><strong>Local File Storage:</strong> Scanned pages, cropped images, and exported PDF files are saved directly inside your device's private app directory or public Downloads directory (when you choose to export).</li>
-            <li><strong>No Cloud Account Required:</strong> You do not need to register, create a username, or provide an email address to use the scanning and PDF creation features.</li>
+            <li><strong>No Cloud Document Upload:</strong> Your physical documents and scanned images are never sent to our servers, Google, or any third party.</li>
             <li><strong>Device Security PIN:</strong> If you enable the Document Security PIN, the PIN hash is stored solely in local Android Encrypted/Private SharedPreferences. It never leaves your device.</li>
-            <li><strong>Sharing:</strong> Your documents are only transmitted to third parties if you manually use the native Android "Share" button to send a PDF via email, messaging, or cloud drives of your choice.</li>
+            <li><strong>Manual Sharing:</strong> Your documents are only shared with third parties if you manually use the native Android "Share" button to send a PDF via email, messaging, or cloud drives of your own choice.</li>
         </ul>
 
-        <h2>4. Third-Party Services & SDKs</h2>
+        <h2>5. Third-Party Services & SDKs Summary</h2>
         <p>
-            The application incorporates only two trusted, official third-party services:
+            The application incorporates trusted, official third-party SDKs strictly to support authentication, billing, and advertising:
         </p>
         <ul>
             <li>
+                <strong>Google Identity Services & Firebase Authentication (Google LLC):</strong> 
+                Used for optional user sign-in (Google Sign-In) and session management. 
+                Learn more: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a> and <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase Privacy & Security</a>.
+            </li>
+            <li>
                 <strong>Google Play Billing (Google LLC):</strong> 
-                Handles the payment processing for QuickScan VIP upgrades. All credit card numbers, payment methods, and billing addresses are handled exclusively by Google Play. We never see, collect, or store your financial details. 
+                Handles payment processing for QuickScan VIP upgrades. All credit card numbers, payment methods, and billing addresses are handled exclusively by Google Play. We never see, collect, or store your financial details. 
                 Learn more: <a href="https://play.google.com/about/play-terms/" target="_blank" rel="noopener noreferrer">Google Play Terms of Service</a>.
             </li>
             <li>
@@ -312,34 +353,35 @@
             </li>
         </ul>
 
-        <h2>5. Data Retention and Deletion</h2>
+        <h2>6. Account Deletion & Data Retention</h2>
         <p>
-            Because all document data is stored locally:
+            We respect your right to control your personal data:
         </p>
         <ul>
-            <li>Deleting a page or document inside QuickScan permanently removes it from your device storage immediately.</li>
-            <li>Uninstalling QuickScan or choosing "Clear Data" in Android System Settings permanently deletes all local scans and settings stored by the application.</li>
+            <li><strong>In-App Account Deletion:</strong> You can permanently delete your user account directly inside the app at any time by navigating to <em>Settings &gt; Account Security &amp; Deletion &gt; Delete Account</em>. This permanently wipes your user profile, authentication credentials, and session tokens.</li>
+            <li><strong>Document Deletion:</strong> Deleting a document inside QuickScan permanently removes the file from device storage immediately.</li>
+            <li><strong>Uninstalling the App:</strong> Uninstalling QuickScan or selecting "Clear Data" in Android System Settings completely erases all locally saved documents, database entries, and settings.</li>
         </ul>
 
-        <h2>6. Children's Privacy</h2>
+        <h2>7. Children's Privacy</h2>
         <p>
             QuickScan is a general audience document utility and does not knowingly collect or solicit personal information from children under the age of 13.
         </p>
 
-        <h2>7. Updates to This Policy</h2>
+        <h2>8. Updates to This Policy</h2>
         <p>
-            We may occasionally update this Privacy Policy to reflect changes in our app or Google Play policies. Any changes will be posted on this page with an updated "Last Updated" date.
+            We may update this Privacy Policy from time to time to reflect changes in our app features or regulatory requirements. Any changes will be posted on this page with an updated "Last Updated" date.
         </p>
 
-        <h2>8. Contact Information</h2>
+        <h2>9. Contact Information & Support</h2>
         <p>
-            If you have any questions, feedback, or concerns regarding this Privacy Policy or your data privacy while using QuickScan, please reach out to us at:
+            If you have any questions, feedback, account deletion requests, or concerns regarding this Privacy Policy, please contact our support team at:
         </p>
 
         <div class="contact-card">
-            <p style="margin-bottom: 6px; font-weight: 700; color: #111827;">QuickScan Support & Privacy</p>
-            <p style="margin-bottom: 4px;">Developer Contact Email:</p>
-            <a href="mailto:nurmonirr@gmail.com">nurmonirr@gmail.com</a>
+            <p style="margin-bottom: 6px; font-weight: 700; color: #111827;">QuickScan Support & Privacy Team</p>
+            <p style="margin-bottom: 4px;">Official Support Email:</p>
+            <a href="mailto:myniro.support@gmail.com">myniro.support@gmail.com</a>
         </div>
     </div>
 
